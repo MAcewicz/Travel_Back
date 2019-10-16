@@ -1,30 +1,35 @@
-package com.kodilla.travel.repository;
+    package com.kodilla.travel.repository;
 
-import com.kodilla.travel.domain.Flight;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+    import com.kodilla.travel.domain.Flight;
+    import org.springframework.data.repository.CrudRepository;
+    import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+    import java.math.BigDecimal;
+    import java.util.List;
+    import java.util.Optional;
 
-@Repository
-public interface FlightRepository extends CrudRepository<Flight, Long> {
+    @Repository
+    public interface FlightRepository extends CrudRepository<Flight, Long> {
 
-    @Override
-    List<Flight> findAll();
+        @Override
+        List<Flight> findAll();
 
-    List<Flight> findAllByFrom(String cityFrom);
+        List<Flight> findAllByAirport(String airport);
 
-    List<Flight> findAllByTo(String cityTo);
+        List<Flight> findAllByDestination(String destination);
 
-    @Override
-    Optional<Flight> findById(Long id);
+        List<Flight> findAllByAirportAndPrice(String airport, BigDecimal price);
 
-    @Override
-    Flight save(Flight flight);
+        List<Flight> findAllByDestinationAndPrice(String destination, BigDecimal price);
 
-    @Override
-    void deleteById(Long id);
+        @Override
+        Optional<Flight> findById(Long id);
+
+        @Override
+        Flight save(Flight flight);
+
+        @Override
+        void deleteById(Long id);
 
 
-}
+    }

@@ -1,18 +1,16 @@
 package com.kodilla.travel.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Data
 @Entity
 @Table(name = "\"FLIGHTS\"")
 public class Flight {
@@ -21,8 +19,10 @@ public class Flight {
     @GeneratedValue
     private Long id;
     private String airline;
-    private String from;
-    private String to;
-    private LocalDateTime departure;
-    private LocalDateTime arrival;
+    private String airport;
+    private String destination;
+    private Timestamp departure;
+    private Timestamp arrival;
+    private BigDecimal price;
+
 }

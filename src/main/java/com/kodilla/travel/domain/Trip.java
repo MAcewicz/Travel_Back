@@ -1,17 +1,15 @@
 package com.kodilla.travel.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Data
 @Entity
 @Table(name = "\"TRIPS\"")
 public class Trip {
@@ -19,17 +17,21 @@ public class Trip {
     @Id
     @GeneratedValue
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private User user;
+    @OneToOne
     private Flight firstFlight;
+    @OneToOne
     private Flight returnFlight;
-    private Weather weather;
+    @ManyToOne
+    @JoinColumn(name = "HOTEL_ID")
     private Hotel hotel;
 
-    private Trip(User user, Flight firstFlight, Flight returnFlight, Weather weather, Hotel hotel) {
+    private Trip(User user, Flight firstFlight, Flight returnFlight, Hotel hotel) {
         this.user = user;
         this.firstFlight = firstFlight;
         this.returnFlight = returnFlight;
-        this.weather = weather;
         this.hotel = hotel;
     }
 
@@ -39,7 +41,6 @@ public class Trip {
         private User user;
         private Flight firstFlight;
         private Flight returnFlight = null;
-        private Weather weather;
         private Hotel hotel = null;
 
         public TripBuilder id(long id) {
@@ -57,11 +58,6 @@ public class Trip {
             return this;
         }
 
-        public TripBuilder weather (Weather weather) {
-            this.weather= weather;
-            return this;
-        }
-
         public TripBuilder returnFlight(Flight returnFlight) {
             this.returnFlight = returnFlight;
             return this;
@@ -73,7 +69,7 @@ public class Trip {
         }
 
         public Trip build() {
-            return new Trip(id, user, firstFlight, returnFlight, weather, hotel);
+            return new Trip(id, user, firstFlight, returnFlight, hotel);
         }
     }
 }

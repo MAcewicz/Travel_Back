@@ -1,7 +1,7 @@
 package com.kodilla.travel.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,9 +10,12 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Data
 @Entity
-@Table(name = "\"USERS\"")
+@Table(
+        name = "\"USERS\"",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})}
+)
 public class User {
 
     @Id
@@ -24,6 +27,9 @@ public class User {
     private String email;
     private String phoneNumber;
     private String password;
+    @OneToMany(targetEntity = Trip.class,
+                mappedBy = "user",
+                fetch = FetchType.LAZY)
     private List<Trip> trips = new ArrayList<>();
 
     public User(Long id, String name, String surname, String pesel, String email, String phoneNumber, String password) {

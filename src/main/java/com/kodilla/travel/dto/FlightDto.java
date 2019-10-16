@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -13,8 +15,9 @@ public class FlightDto {
 
     private Long id;
     private String airline;
-    private String from;
-    private String to;
-    private LocalDateTime departure;
-    private LocalDateTime arrival;
+    private String airport;
+    private String destination;
+    private Timestamp departure;
+    private Timestamp arrival;
+    private BigDecimal price;
 }

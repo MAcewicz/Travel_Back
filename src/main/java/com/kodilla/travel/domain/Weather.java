@@ -1,17 +1,14 @@
 package com.kodilla.travel.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Data
 @Entity
 @Table(name = "\"WEATHER\"")
 public class Weather {

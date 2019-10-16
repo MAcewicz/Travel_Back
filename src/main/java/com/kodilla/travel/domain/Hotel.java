@@ -1,19 +1,18 @@
 package com.kodilla.travel.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Data
 @Entity
 @Table(name = "\"HOTELS\"")
 public class Hotel {
@@ -25,4 +24,8 @@ public class Hotel {
     private BigDecimal pricePerNight;
     private LocalDateTime checkIn;
     private LocalDateTime checkOut;
+    @OneToMany(targetEntity = Trip.class,
+            mappedBy = "hotel",
+            fetch = FetchType.LAZY)
+    private List<Trip> trips = new ArrayList<>();
 }
