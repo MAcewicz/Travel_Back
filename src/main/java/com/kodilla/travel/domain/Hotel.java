@@ -1,18 +1,18 @@
 package com.kodilla.travel.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "\"HOTELS\"")
 public class Hotel {
@@ -21,11 +21,8 @@ public class Hotel {
     @GeneratedValue
     private Long id;
     private String name;
+    private String city;
     private BigDecimal pricePerNight;
-    private LocalDateTime checkIn;
-    private LocalDateTime checkOut;
-    @OneToMany(targetEntity = Trip.class,
-            mappedBy = "hotel",
-            fetch = FetchType.LAZY)
-    private List<Trip> trips = new ArrayList<>();
+    private Timestamp checkIn;
+    private Timestamp checkOut;
 }

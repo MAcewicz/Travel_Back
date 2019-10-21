@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class HotelDto {
 
     private Long id;
     private String name;
+    private String city;
     private BigDecimal pricePerNight;
-    private LocalDateTime checkIn;
-    private LocalDateTime checkOut;
-    private List<TripDto> tripDtos;
+    private Timestamp checkIn;
+    private Timestamp checkOut;
 }
