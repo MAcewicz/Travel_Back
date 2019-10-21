@@ -32,22 +32,22 @@ public class FlightController {
         return flightMapper.mapToFlightDto(flightService.getFlightById(id).orElseThrow(FlightNotFoundException::new));
     }
 
-    @GetMapping(value = "flights/{airport}")
+    @GetMapping(value = "flights/airport/{airport}")
     public List<FlightDto> getFlightByAirport(@PathVariable String airport) {
         return flightMapper.mapToFlightDtoList(flightService.getFlightsByAirport(airport));
     }
 
-    @GetMapping(value = "flight/{destination}")
+    @GetMapping(value = "flight/dest/{destination}")
     public List<FlightDto> getFlightsByDestination(@PathVariable String destination) {
         return flightMapper.mapToFlightDtoList(flightService.getFlightsByDestination(destination));
     }
 
-    @GetMapping(value = "flight/{airport}/{prive}")
+    @GetMapping(value = "flight/airprice/{airport}/{price}")
     public List<FlightDto> getFlightsByAirportAndPrice(@PathVariable String airport, @PathVariable BigDecimal price) {
         return flightMapper.mapToFlightDtoList(flightService.getFlightsByAirportAndPrice(airport, price));
     }
 
-    @GetMapping(value = "flight/{destination}/{price}")
+    @GetMapping(value = "flight/destiprice/{destination}/{price}")
     public List<FlightDto> getFlightsByDestinationAndPrice(@PathVariable String destination, @PathVariable BigDecimal price) {
         return flightMapper.mapToFlightDtoList(flightService.getFlightsByDestinationAndPrice(destination, price));
     }

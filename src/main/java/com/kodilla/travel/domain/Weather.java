@@ -1,16 +1,15 @@
 package com.kodilla.travel.domain;
 
 import com.kodilla.travel.LocalDateConverter;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "\"WEATHER\"")
 public class Weather {

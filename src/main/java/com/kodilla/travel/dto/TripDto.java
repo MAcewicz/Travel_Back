@@ -15,7 +15,6 @@ public class TripDto {
     private Long userId;
     private FlightDto firstFlight;
     private FlightDto returnFlight;
-    private WeatherDto weather;
     private HotelDto hotel;
 
     public static class TripDtoBuilder {
@@ -23,7 +22,6 @@ public class TripDto {
         private Long userId;
         private FlightDto firstFlight;
         private FlightDto returnFlight = null;
-        private WeatherDto weather;
         private HotelDto hotel = null;
 
         public TripDtoBuilder id(long id) {
@@ -46,17 +44,13 @@ public class TripDto {
             return this;
         }
 
-        public TripDtoBuilder weather(WeatherDto weather) {
-            this.weather = weather;
-            return this;
-        }
         public TripDtoBuilder hotel(HotelDto hotel) {
             this.hotel = hotel;
             return this;
         }
 
         public TripDto build() {
-            return new TripDto(id, userId, firstFlight, returnFlight, weather, hotel);
+            return new TripDto(id, userId, firstFlight, returnFlight, hotel);
         }
     }
 

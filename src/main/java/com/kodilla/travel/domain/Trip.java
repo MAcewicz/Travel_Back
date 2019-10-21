@@ -1,15 +1,13 @@
 package com.kodilla.travel.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "\"TRIPS\"")
 public class Trip {
@@ -21,11 +19,13 @@ public class Trip {
     @JoinColumn(name = "USER_ID")
     private User user;
     @OneToOne
+    @MapsId
     private Flight firstFlight;
     @OneToOne
+    @MapsId
     private Flight returnFlight;
-    @ManyToOne
-    @JoinColumn(name = "HOTEL_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId
     private Hotel hotel;
 
     private Trip(User user, Flight firstFlight, Flight returnFlight, Hotel hotel) {

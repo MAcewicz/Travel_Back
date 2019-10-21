@@ -1,6 +1,6 @@
 //package com.kodilla.travel.service;
 //
-//import com.kodilla.travel.com.kodilla.travel.controller.domain.User;
+//import com.kodilla.travel.domain.User;
 //import com.kodilla.travel.repository.UserRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Service;

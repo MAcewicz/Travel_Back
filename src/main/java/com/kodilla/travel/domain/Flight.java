@@ -1,8 +1,6 @@
 package com.kodilla.travel.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,7 +8,8 @@ import java.sql.Timestamp;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "\"FLIGHTS\"")
 public class Flight {
@@ -24,5 +23,4 @@ public class Flight {
     private Timestamp departure;
     private Timestamp arrival;
     private BigDecimal price;
-
 }

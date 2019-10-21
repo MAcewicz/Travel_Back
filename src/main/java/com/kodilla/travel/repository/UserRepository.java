@@ -1,6 +1,6 @@
 //package com.kodilla.travel.repository;
 //
-//import com.kodilla.travel.com.kodilla.travel.controller.domain.User;
+//import com.kodilla.travel.domain.User;
 //import org.springframework.data.repository.CrudRepository;
 //import org.springframework.stereotype.Repository;
 //
