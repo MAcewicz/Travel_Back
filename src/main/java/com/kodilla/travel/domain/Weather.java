@@ -1,6 +1,6 @@
 package com.kodilla.travel.domain;
 
-import com.kodilla.travel.LocalDateConverter;
+import com.kodilla.travel.converter.LocalDateConverter;
 import lombok.*;
 
 import javax.persistence.*;

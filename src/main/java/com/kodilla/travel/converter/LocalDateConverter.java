@@ -1,4 +1,4 @@
-package com.kodilla.travel;
+package com.kodilla.travel.converter;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

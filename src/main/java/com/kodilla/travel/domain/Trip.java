@@ -15,8 +15,8 @@ public class Trip {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @OneToOne
+    @MapsId
     private User user;
     @OneToOne
     @MapsId
@@ -24,7 +24,7 @@ public class Trip {
     @OneToOne
     @MapsId
     private Flight returnFlight;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @MapsId
     private Hotel hotel;
 
