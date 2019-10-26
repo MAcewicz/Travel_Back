@@ -15,7 +15,8 @@ public class UserDto {
     private Long id;
     private String name;
     private String surname;
+    private String pesel;
     private String email;
     private String phoneNumber;
-    private List<TripDto> tripDtos = new ArrayList<>();
+    private String password;
 }
