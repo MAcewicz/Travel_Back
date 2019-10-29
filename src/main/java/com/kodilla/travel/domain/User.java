@@ -25,4 +25,13 @@ public class User {
     private String email;
     private String phoneNumber;
     private String password;
+
+    public User(String name, String surname, String pesel, String email, String phoneNumber, String password) {
+        this.name = name;
+        this.surname = surname;
+        this.pesel = pesel;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+    }
 }

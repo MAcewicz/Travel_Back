@@ -25,4 +25,12 @@ public class Hotel {
     private BigDecimal pricePerNight;
     private Timestamp checkIn;
     private Timestamp checkOut;
+
+    public Hotel(String name, String city, BigDecimal pricePerNight, Timestamp checkIn, Timestamp checkOut) {
+        this.name = name;
+        this.city = city;
+        this.pricePerNight = pricePerNight;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+    }
 }

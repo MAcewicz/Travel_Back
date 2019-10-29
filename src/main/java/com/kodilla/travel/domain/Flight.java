@@ -23,4 +23,13 @@ public class Flight {
     private Timestamp departure;
     private Timestamp arrival;
     private BigDecimal price;
+
+    public Flight(String airline, String airport, String destination, Timestamp departure, Timestamp arrival, BigDecimal price) {
+        this.airline = airline;
+        this.airport = airport;
+        this.destination = destination;
+        this.departure = departure;
+        this.arrival = arrival;
+        this.price = price;
+    }
 }

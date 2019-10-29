@@ -23,4 +23,12 @@ public class Weather {
     private int temperature;
     private String cloudiness;
     private String rainfall;
+
+    public Weather(String cityName, LocalDate date, int temperature, String cloudiness, String rainfall) {
+        this.cityName = cityName;
+        this.date = date;
+        this.temperature = temperature;
+        this.cloudiness = cloudiness;
+        this.rainfall = rainfall;
+    }
 }
