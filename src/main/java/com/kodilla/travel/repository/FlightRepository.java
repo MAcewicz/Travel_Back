@@ -30,6 +30,4 @@
 
         @Override
         void deleteById(Long id);
-
-
     }

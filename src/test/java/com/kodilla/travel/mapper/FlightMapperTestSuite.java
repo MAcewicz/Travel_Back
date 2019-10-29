@@ -3,7 +3,6 @@ package com.kodilla.travel.mapper;
 import com.kodilla.travel.domain.Flight;
 import com.kodilla.travel.dto.FlightDto;
 import com.kodilla.travel.mappers.FlightMapper;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

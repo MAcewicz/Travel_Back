@@ -1,7 +1,5 @@
 package com.kodilla.travel.dto;
 
-import com.kodilla.travel.domain.Flight;
-import com.kodilla.travel.domain.Weather;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,16 +11,16 @@ public class TripDto {
 
     private Long id;
     private Long userId;
-    private FlightDto firstFlight;
-    private FlightDto returnFlight;
-    private HotelDto hotel;
+    private Long firstFlightId;
+    private Long returnFlightId;
+    private Long hotelId;
 
     public static class TripDtoBuilder {
         private Long id;
         private Long userId;
-        private FlightDto firstFlight;
-        private FlightDto returnFlight = null;
-        private HotelDto hotel = null;
+        private Long firstFlightId;
+        private Long returnFlightId = null;
+        private Long hotelId = null;
 
         public TripDtoBuilder id(long id) {
             this.id = id;
@@ -34,23 +32,23 @@ public class TripDto {
             return this;
         }
 
-        public TripDtoBuilder firstFlight(FlightDto firstFlight) {
-            this.firstFlight = firstFlight;
+        public TripDtoBuilder firstFlight(Long firstFlightId) {
+            this.firstFlightId = firstFlightId;
             return this;
         }
 
-        public TripDtoBuilder returnFlight(FlightDto returnFlight) {
-            this.returnFlight = returnFlight;
+        public TripDtoBuilder returnFlight(Long returnFlightId) {
+            this.returnFlightId = returnFlightId;
             return this;
         }
 
-        public TripDtoBuilder hotel(HotelDto hotel) {
-            this.hotel = hotel;
+        public TripDtoBuilder hotel(Long hotelId) {
+            this.hotelId = hotelId;
             return this;
         }
 
         public TripDto build() {
-            return new TripDto(id, userId, firstFlight, returnFlight, hotel);
+            return new TripDto(id, userId, firstFlightId, returnFlightId, hotelId);
         }
     }
 
