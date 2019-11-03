@@ -24,10 +24,10 @@ public class WeatherService {
     }
 
     public Optional<Weather> getWeatherByCity(String city) {
-        return weatherRepository.findByCityName(city);
+        return weatherRepository.findByCity(city);
     }
 
-    public List<Weather> getWeatherByConditions(int temp, String cloud, String rainfall) {
+    public List<Weather> getWeatherByConditions(int temp, int cloud, int rainfall) {
         return weatherRepository.findByTemperatureAndCloudinessAndRainfall(temp, cloud, rainfall);
     }
 

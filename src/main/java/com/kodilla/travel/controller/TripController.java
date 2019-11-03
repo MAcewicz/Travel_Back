@@ -1,6 +1,5 @@
 package com.kodilla.travel.controller;
 
-import com.kodilla.travel.domain.Trip;
 import com.kodilla.travel.dto.TripDto;
 import com.kodilla.travel.exception.FlightNotFoundException;
 import com.kodilla.travel.exception.HotelNotFoundException;

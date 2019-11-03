@@ -1,6 +1,5 @@
 package com.kodilla.travel.controller;
 
-import com.kodilla.travel.domain.User;
 import com.kodilla.travel.dto.UserDto;
 import com.kodilla.travel.exception.UserNotFoundException;
 import com.kodilla.travel.mappers.UserMapper;

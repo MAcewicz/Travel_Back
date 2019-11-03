@@ -15,9 +15,9 @@ public interface WeatherRepository extends CrudRepository<Weather, Long> {
 
     Optional<Weather> findById(Long id);
 
-    Optional<Weather> findByCityName(String name);
+    Optional<Weather> findByCity(String name);
 
-    List<Weather> findByTemperatureAndCloudinessAndRainfall(int temp, String cloudiness, String rainfall);
+    List<Weather> findByTemperatureAndCloudinessAndRainfall(int temp, int cloudiness, int rainfall);
 
     @Override
     Weather save(Weather weather);

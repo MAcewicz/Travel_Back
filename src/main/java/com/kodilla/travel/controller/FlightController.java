@@ -5,7 +5,6 @@ import com.kodilla.travel.exception.FlightNotFoundException;
 import com.kodilla.travel.mappers.FlightMapper;
 import com.kodilla.travel.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;

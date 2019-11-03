@@ -25,8 +25,8 @@ public class WeatherMapperTestSuite {
     @Test
     public void testMapToWeatherDtoList() {
         //Given
-        Weather weather = new Weather(2L,"Warsaw", LocalDate.now(),25, "No clouds", "No rainfall");
-        Weather weather1 = new Weather(3L,"Krakow", LocalDate.now(),20, "Cloudy", "Small rainfall");
+        Weather weather = new Weather(2L,"Warsaw", LocalDate.now(),25, 0, 0);
+        Weather weather1 = new Weather(3L,"Krakow", LocalDate.now(),20, 50, 75);
         List<Weather> weatherList = new ArrayList<>();
         weatherList.add(weather);
         weatherList.add(weather1);
@@ -39,12 +39,12 @@ public class WeatherMapperTestSuite {
     @Test
     public void testMapToWeatherDto() {
         //Given
-        Weather weather = new Weather(2L,"Warsaw", LocalDate.now(),25, "No clouds", "No rainfall");
+        Weather weather = new Weather(2L,"Warsaw", LocalDate.now(), 25, 75, 10);
         //When
         WeatherDto weatherDto = weatherMapper.mapToWeatherDto(weather);
         //Then
         assertEquals(weatherDto.getId(), weather.getId());
-        assertEquals(weatherDto.getCityName(), weather.getCityName());
+        assertEquals(weatherDto.getCity(), weather.getCity());
         assertEquals(weatherDto.getDate(), weather.getDate());
         assertEquals(weatherDto.getTemperature(), weather.getTemperature());
         assertEquals(weatherDto.getCloudiness(), weather.getCloudiness());
@@ -54,12 +54,12 @@ public class WeatherMapperTestSuite {
     @Test
     public void testMapToWeather() {
         //Given
-        WeatherDto weatherDto = new WeatherDto(2L,"Warsaw", LocalDate.now(),25, "No clouds", "No rainfall");
+        WeatherDto weatherDto = new WeatherDto(2L,"Warsaw", LocalDate.now(),25, 0, 0);
         //When
         Weather weather = weatherMapper.mapToWeather(weatherDto);
         //Then
         assertEquals(weather.getId(), weatherDto.getId());
-        assertEquals(weather.getCityName(), weatherDto.getCityName());
+        assertEquals(weather.getCity(), weatherDto.getCity());
         assertEquals(weather.getDate(), weatherDto.getDate());
         assertEquals(weather.getTemperature(), weatherDto.getTemperature());
         assertEquals(weather.getCloudiness(), weatherDto.getCloudiness());

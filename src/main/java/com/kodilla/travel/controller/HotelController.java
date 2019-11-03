@@ -31,12 +31,12 @@ public class HotelController {
         return hotelMapper.mapToHotelDto(hotelService.getHotelById(id).orElseThrow(HotelNotFoundException::new));
     }
 
-    @GetMapping(value = "hotels/{city}")
+    @GetMapping(value = "hotels/city/{city}")
     public List<HotelDto> getHotelsByCity(@PathVariable String city) {
         return hotelMapper.mapToHotelDtoList(hotelService.getHotelsByCity(city));
     }
 
-    @GetMapping(value = "hotels/{city}/{price}")
+    @GetMapping(value = "hotels/city/price/{city}/{price}")
     public List<HotelDto> getHotelsByCityAndPrice(@PathVariable String city, @PathVariable BigDecimal price) {
         return hotelMapper.mapToHotelDtoList(hotelService.getHotelsByCityAndPrice(city, price));
     }

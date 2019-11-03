@@ -1,11 +1,11 @@
 package com.kodilla.travel.controller;
 
-import com.kodilla.travel.domain.Weather;
 import com.kodilla.travel.dto.WeatherDto;
 import com.kodilla.travel.exception.WeatherNotFoundException;
 import com.kodilla.travel.mappers.WeatherMapper;
 import com.kodilla.travel.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,18 +26,18 @@ public class WeatherController {
         return weatherMapper.mapToWeatherDtoList(weatherService.getWeatherList());
     }
 
-    @GetMapping(value = "weather/{id}")
+    @GetMapping(value = "weather/id/{id}")
     public WeatherDto getWeatherById(@PathVariable Long id) throws WeatherNotFoundException {
         return weatherMapper.mapToWeatherDto(weatherService.getWeatherById(id).orElseThrow(WeatherNotFoundException::new));
     }
 
-    @GetMapping(value = "weather/{cityName}")
-    public WeatherDto getWeatherByCity(@PathVariable String cityName) throws WeatherNotFoundException {
-        return weatherMapper.mapToWeatherDto(weatherService.getWeatherByCity(cityName).orElseThrow(WeatherNotFoundException::new));
+    @GetMapping(value = "weather/city/{city}")
+    public WeatherDto getWeatherByCity(@PathVariable String city) throws WeatherNotFoundException {
+        return weatherMapper.mapToWeatherDto(weatherService.getWeatherByCity(city).orElseThrow(WeatherNotFoundException::new));
     }
 
-    @GetMapping(value = "weather/{temp}/{cloudiness}/{rainfall}")
-    public List<WeatherDto> getWeatherByConditions(@PathVariable int temp, @PathVariable String cloudiness, @PathVariable String rainfall) {
+    @GetMapping(value = "weather/cond/{temp}/{cloudiness}/{rainfall}")
+    public List<WeatherDto> getWeatherByConditions(@PathVariable int temp, @PathVariable int cloudiness, @PathVariable int rainfall) {
         return weatherMapper.mapToWeatherDtoList(weatherService.getWeatherByConditions(temp, cloudiness, rainfall));
     }
 
@@ -51,7 +51,7 @@ public class WeatherController {
         weatherService.saveWeather(weatherMapper.mapToWeather(weatherDto));
     }
 
-    @DeleteMapping(value = "weather/{id}")
+    @DeleteMapping(value = "weather/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteWeather(@PathVariable Long id) {
         weatherService.delete(id);
     }

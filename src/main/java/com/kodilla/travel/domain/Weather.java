@@ -17,15 +17,15 @@ public class Weather {
     @Id
     @GeneratedValue
     private Long id;
-    private String cityName;
+    private String city;
     @Convert(converter = LocalDateConverter.class)
     private LocalDate date;
     private int temperature;
-    private String cloudiness;
-    private String rainfall;
+    private int cloudiness;
+    private int rainfall;
 
-    public Weather(String cityName, LocalDate date, int temperature, String cloudiness, String rainfall) {
-        this.cityName = cityName;
+    public Weather(String city, LocalDate date, int temperature, int cloudiness, int rainfall) {
+        this.city = city;
         this.date = date;
         this.temperature = temperature;
         this.cloudiness = cloudiness;

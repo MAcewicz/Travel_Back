@@ -27,4 +27,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     compile "com.amadeus:amadeus-java:3.3.0"
+    implementation 'com.google.code.gson:gson:2.8.6'
+    compile "com.fasterxml.jackson.core:jackson-databind:2.9.7"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.7"
+    compile 'org.openweathermap.java-api:api-core:1.2.3'
 }

@@ -12,7 +12,7 @@ public class WeatherMapper {
 
     public Weather mapToWeather (WeatherDto weatherDto) {
         return new Weather(weatherDto.getId(),
-                weatherDto.getCityName(),
+                weatherDto.getCity(),
                 weatherDto.getDate(),
                 weatherDto.getTemperature(),
                 weatherDto.getCloudiness(),
@@ -21,7 +21,7 @@ public class WeatherMapper {
 
     public WeatherDto mapToWeatherDto (Weather weather) {
         return new WeatherDto(weather.getId(),
-                weather.getCityName(),
+                weather.getCity(),
                 weather.getDate(),
                 weather.getTemperature(),
                 weather.getCloudiness(),
@@ -32,7 +32,7 @@ public class WeatherMapper {
         return weatherList.stream()
                 .map(weather -> new WeatherDto(
                         weather.getId(),
-                        weather.getCityName(),
+                        weather.getCity(),
                         weather.getDate(),
                         weather.getTemperature(),
                         weather.getCloudiness(),
