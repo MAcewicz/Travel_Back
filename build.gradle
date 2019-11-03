@@ -30,5 +30,4 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     compile "com.fasterxml.jackson.core:jackson-databind:2.9.7"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.7"
-    compile 'org.openweathermap.java-api:api-core:1.2.3'
 }

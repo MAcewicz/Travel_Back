@@ -27,7 +27,7 @@ public class FlightTestSuite {
         Timestamp departureTs = Timestamp.valueOf(departureLdt);
         Timestamp arrivalTs = Timestamp.valueOf(arrivalLdt);
         BigDecimal price = new BigDecimal(220.00);
-        return new Flight(2L, "PLL Test", "Warsaw", "London", departureTs, arrivalTs, price);
+        return new Flight("PLL Test", "Warsaw", "London", departureTs, arrivalTs, price);
     }
 
     @Test
@@ -66,8 +66,7 @@ public class FlightTestSuite {
         //When
         List<Flight> resultList = flightRepository.findAll();
         //Then
-        int result = resultList.size();
-        assertEquals(result, 1);
+        assertEquals(resultList.size(), 1);
         //CleanUp
         System.out.println(flight.getId());
         flightRepository.deleteById(flight.getId());

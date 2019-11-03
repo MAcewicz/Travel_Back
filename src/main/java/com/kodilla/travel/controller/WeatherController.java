@@ -51,7 +51,7 @@ public class WeatherController {
         weatherService.saveWeather(weatherMapper.mapToWeather(weatherDto));
     }
 
-    @DeleteMapping(value = "weather/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "weather/{id}")
     public void deleteWeather(@PathVariable Long id) {
         weatherService.delete(id);
     }
