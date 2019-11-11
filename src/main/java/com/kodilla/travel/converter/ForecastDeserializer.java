@@ -21,12 +21,9 @@ public class ForecastDeserializer extends JsonDeserializer<ForecastDto> {
             throws IOException, JsonProcessingException {
 
         JsonNode weatherNode = jp.getCodec().readTree(jp);
-
         String city = weatherNode.get("city_name").textValue();
 
         ForecastDto forecastDto = new ForecastDto();
-        forecastDto.setCity(city);
-
         List<WeatherDto> dtos = new ArrayList<>();
 
         Iterator<JsonNode> itr = weatherNode.get("data").elements();
