@@ -7,3 +7,6 @@ Link to Heroku very soon.
 
 Link to front-end repository:
 https://github.com/MAcewicz/Travel_front
+
+
+Thank you.
