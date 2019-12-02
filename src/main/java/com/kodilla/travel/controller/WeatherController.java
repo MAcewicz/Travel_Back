@@ -1,12 +1,16 @@
 package com.kodilla.travel.controller;
 
+import com.kodilla.travel.domain.Airport;
 import com.kodilla.travel.dto.WeatherDto;
+import com.kodilla.travel.exception.AirportNotFoundException;
 import com.kodilla.travel.exception.WeatherNotFoundException;
 import com.kodilla.travel.mappers.WeatherMapper;
+import com.kodilla.travel.service.AirportService;
 import com.kodilla.travel.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -16,6 +20,9 @@ public class WeatherController {
 
     @Autowired
     WeatherService weatherService;
+
+    @Autowired
+    AirportService airportService;
 
     @Autowired
     WeatherMapper weatherMapper;
@@ -31,8 +38,13 @@ public class WeatherController {
     }
 
     @GetMapping(value = "weather/city/{city}")
-    public WeatherDto getWeatherByCity(@PathVariable String city) throws WeatherNotFoundException {
-        return weatherMapper.mapToWeatherDto(weatherService.getWeatherByCity(city).orElseThrow(WeatherNotFoundException::new));
+    public List<WeatherDto> getWeatherByCity(@PathVariable String city) {
+        return weatherMapper.mapToWeatherDtoList(weatherService.getWeatherByCity(city));
+    }
+
+    @GetMapping(value = "weather/citydate/{city}/{date}")
+    public WeatherDto getWeatherByCityAndDate(@PathVariable String city, @PathVariable LocalDate date) throws WeatherNotFoundException {
+        return weatherMapper.mapToWeatherDto(weatherService.getWeatherByCityAndDate(city, date).orElseThrow(WeatherNotFoundException::new));
     }
 
     @GetMapping(value = "weather/cond/{temp}/{cloudiness}/{rainfall}")

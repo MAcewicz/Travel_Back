@@ -18,8 +18,8 @@ public class AirportService {
         return airportRepository.findAll();
     }
 
-    public List<Airport> getAirportsByCountryCode(String countryCode) {
-        return airportRepository.findByCountryCode(countryCode);
+    public List<Airport> getAirportsByCountry(String country) {
+        return airportRepository.findByCountry(country);
     }
 
     public List<Airport> getAirportsByCity(String city) {
@@ -28,6 +28,10 @@ public class AirportService {
 
     public Optional<Airport> getAirportById(Long id) {
         return airportRepository.findById(id);
+    }
+
+    public Optional<Airport> getAirportByName(String name) {
+        return airportRepository.findByName(name);
     }
 
     public Optional<Airport> getAirportByIATA(String iata) {

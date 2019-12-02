@@ -26,7 +26,7 @@ public class AirportServiceTestSuite {
     private AirportRepository airportRepository;
 
     private Airport getAirport() {
-        return new Airport(1L, "Warsaw Airport", "WAW", "Warsaw", "Poland", "PL");
+        return new Airport(1L, "Gdansk", "Poland", "PL", "GDN", "Gdansk");
     }
 
     @Test
@@ -49,11 +49,11 @@ public class AirportServiceTestSuite {
         //Given
         List<Airport> airports = new ArrayList<>();
         airports.add(getAirport());
-        airports.add(new Airport(2L, "Warsaw Modlin Airport", "WMI", "Warsaw", "Poland", "PL"));
+        airports.add(getAirport());
 
-        when(airportRepository.findByCountryCode("PL")).thenReturn(airports);
+        when(airportRepository.findByCountry("Poland")).thenReturn(airports);
         //When
-        List<Airport> resultList = airportService.getAirportsByCountryCode("PL");
+        List<Airport> resultList = airportService.getAirportsByCountry("Poland");
         //Then
         assertEquals(resultList.size(), 2);
     }
@@ -63,11 +63,11 @@ public class AirportServiceTestSuite {
         //Given
         List<Airport> airports = new ArrayList<>();
         airports.add(getAirport());
-        airports.add(new Airport(2L, "Warsaw Modlin Airport", "WMI", "Warsaw", "Poland", "PL"));
+        airports.add(getAirport());
 
-        when(airportRepository.findByCity("Warsaw")).thenReturn(airports);
+        when(airportRepository.findByCity("Gdansk")).thenReturn(airports);
         //When
-        List<Airport> resultList = airportService.getAirportsByCity("Warsaw");
+        List<Airport> resultList = airportService.getAirportsByCity("Gdansk");
         //Then
         assertEquals(resultList.size(), 2);
     }
@@ -89,9 +89,9 @@ public class AirportServiceTestSuite {
         //Given
         Airport airport = getAirport();
 
-        when(airportRepository.findByIata("WAW")).thenReturn(Optional.of(airport));
+        when(airportRepository.findByIata("GDN")).thenReturn(Optional.of(airport));
         //When
-        Optional<Airport> result = airportService.getAirportByIATA("WAW");
+        Optional<Airport> result = airportService.getAirportByIATA("GDN");
         //Then
         assertNotNull(result);
     }

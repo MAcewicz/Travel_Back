@@ -14,14 +14,18 @@ public interface AirportRepository extends CrudRepository<Airport, Long> {
 
     List<Airport> findByCity(String city);
 
-    List<Airport> findByCountryCode(String countryCode);
+    List<Airport> findByCountry(String country);
 
     Optional<Airport> findById(Long id);
 
     Optional<Airport> findByIata(String iata);
 
+    Optional<Airport> findByName(String name);
+
     Airport save(Airport airport);
 
     @Override
     void deleteById(Long id);
+
+
 }

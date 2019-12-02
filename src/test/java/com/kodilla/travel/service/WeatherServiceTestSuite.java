@@ -8,7 +8,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -72,29 +74,13 @@ public class WeatherServiceTestSuite {
     @Test
     public void shouldFetchWeatherByCity() {
         //Given
+        LocalDate date = LocalDate.now();
         Weather weather = new Weather(3L, "Warsaw", LocalDate.now(), 25, 0, 0);
 
-        when(weatherRepository.findByCity("Warsaw")).thenReturn(Optional.of(weather));
+        when(weatherRepository.findByCityAndDate("Warsaw", date)).thenReturn(Optional.of(weather));
         //When
-        Optional<Weather> result = weatherService.getWeatherByCity("Warsaw");
+        Optional<Weather> result = weatherService.getWeatherByCityAndDate("Warsaw", date);
         //Then
         assertNotNull(result);
-    }
-
-    @Test
-    public void shouldFetchWeatherListByConditions() {
-        //Given
-        Weather weather1 = new Weather(3L, "Warsaw", LocalDate.now(), 25, 0, 0);
-        Weather weather2 = new Weather(4L, "Warsaw", LocalDate.now(), 25, 0, 0);
-        List<Weather> weatherList = new ArrayList<>();
-        weatherList.add(weather1);
-        weatherList.add(weather2);
-
-        when(weatherRepository.findByTemperatureAndCloudinessAndRainfall(25, 0, 0))
-                .thenReturn(weatherList);
-        //When
-        List<Weather> resultList = weatherService.getWeatherByConditions(25, 0, 0);
-        //Then
-        assertEquals(resultList.size(), 2);
     }
 }

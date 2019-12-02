@@ -20,12 +20,4 @@ public class WeatherDto {
     private int temperature;
     private int cloudiness;
     private int rainfall;
-
-    public WeatherDto(String city, LocalDate date, int temperature, int cloudiness, int rainfall) {
-        this.city = city;
-        this.date = date;
-        this.temperature = temperature;
-        this.cloudiness = cloudiness;
-        this.rainfall = rainfall;
-    }
 }

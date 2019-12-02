@@ -12,25 +12,30 @@ public class AirportMapper {
 
     public List<AirportDto> mapToAirportDtoList(List<Airport> airports) {
         return airports.stream()
-                .map(a -> new AirportDto(a.getId(), a.getName(), a.getIata(), a.getCity(), a.getCountry(), a.getCountryCode()))
+                .map(a -> new AirportDto(a.getId(),
+                        a.getCity(),
+                        a.getCountry(),
+                        a.getCountryCode(),
+                        a.getIata(),
+                        a.getName()))
                 .collect(Collectors.toList());
     }
 
     public AirportDto mapToAirportDto(Airport airport) {
         return new AirportDto(airport.getId(),
-                airport.getName(),
-                airport.getIata(),
                 airport.getCity(),
                 airport.getCountry(),
-                airport.getCountryCode());
+                airport.getCountryCode(),
+                airport.getIata(),
+                airport.getName());
     }
 
     public Airport mapToAirport(AirportDto airportDto) {
         return new Airport(airportDto.getId(),
-                airportDto.getName(),
-                airportDto.getIata(),
                 airportDto.getCity(),
                 airportDto.getCountry(),
-                airportDto.getCountryCode());
+                airportDto.getCountryCode(),
+                airportDto.getIata(),
+                airportDto.getName());
     }
 }

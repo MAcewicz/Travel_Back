@@ -25,9 +25,9 @@ public class AirportController {
         return airportMapper.mapToAirportDtoList(airportService.getAllAirports());
     }
 
-    @GetMapping(value = "airport/country/{countryCode}")
-    public List<AirportDto> getAirportsByCountryCode(@PathVariable String countryCode) {
-        return airportMapper.mapToAirportDtoList(airportService.getAirportsByCountryCode(countryCode));
+    @GetMapping(value = "airport/country/{country}")
+    public List<AirportDto> getAirportsByCountryCode(@PathVariable String country) {
+        return airportMapper.mapToAirportDtoList(airportService.getAirportsByCountry(country));
     }
 
     @GetMapping(value = "airport/city/{city}")

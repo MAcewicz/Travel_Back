@@ -4,19 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class UserDto {
+public class AirlineDto {
 
     private Long id;
     private String name;
-    private String surname;
-    private String pesel;
-    private String email;
-    private String phoneNumber;
-    private String password;
+    private String iataCode;
 }

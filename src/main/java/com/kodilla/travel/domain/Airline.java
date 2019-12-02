@@ -11,22 +11,14 @@ import javax.persistence.Table;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "\"AIRPORTS\"")
 @Getter
-public class Airport {
+@Entity
+@Table(name = "\"AIRLINES\"")
+public class Airline {
 
     @Id
     @GeneratedValue
     private Long id;
-    private String city;
-    private String country;
-    private String countryCode;
-    private String iata;
     private String name;
-
-
-
-
-
+    private String iataCode;
 }

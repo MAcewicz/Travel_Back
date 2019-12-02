@@ -1,6 +1,6 @@
 package com.kodilla.travel.repository;
 
-import com.kodilla.travel.domain.Trip;
+import com.kodilla.travel.domain.Airline;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,18 +8,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface TripRepository extends CrudRepository<Trip, Long> {
+public interface AirlineRepository extends CrudRepository<Airline, Long> {
 
     @Override
-    List<Trip> findAll();
-
-    List<Trip> findAllByUserId(Long userId);
+    List<Airline> findAll();
 
     @Override
-    Optional<Trip> findById(Long id);
+    Optional<Airline> findById(Long id);
+
+    Optional<Airline> findByIataCode(String iataCode);
 
     @Override
-    Trip save(Trip trip);
+    Airline save(Airline airline);
 
     @Override
     void deleteById(Long id);

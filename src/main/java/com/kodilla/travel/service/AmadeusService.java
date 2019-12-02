@@ -1,0 +1,27 @@
+package com.kodilla.travel.service;
+
+import com.amadeus.exceptions.ResponseException;
+import com.kodilla.travel.amadeus.AmadeusClient;
+import com.kodilla.travel.dto.FlightDto;
+import com.kodilla.travel.exception.AirlineNotFoundException;
+import com.kodilla.travel.exception.AirportNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@Service
+public class AmadeusService {
+
+    @Autowired
+    private AmadeusClient amadeusClient;
+
+    @Autowired
+    private AirportService airportService;
+
+    public List<FlightDto> getCheapFlights(String origin, String destination, String departure) throws AirlineNotFoundException, AirportNotFoundException, ResponseException {
+
+        return amadeusClient.getLowFare(origin, destination, LocalDate.parse(departure));
+    }
+}

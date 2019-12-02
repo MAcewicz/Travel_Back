@@ -25,8 +25,8 @@ public class AirportMapperTestSuite {
     public void testMapToAirportDtoList() {
         //Given
         List<Airport> airports = new ArrayList<>();
-        airports.add(new Airport(1L, "Gdansk Airport", "GDN", "Gdansk", "Poland", "PL"));
-        airports.add(new Airport(2L, "Warsaw Airport", "WAW", "Warsaw", "Poland", "PL"));
+        airports.add(new Airport(1L, "Gdansk", "Poland", "PL", "GDN", "Gdansk"));
+        airports.add(new Airport(2L, "Warsaw", "Poland", "PL", "WAW", "Warsaw Chopin"));
         //When
         List<AirportDto> resultList = airportMapper.mapToAirportDtoList(airports);
         //Then
@@ -36,7 +36,7 @@ public class AirportMapperTestSuite {
     @Test
     public void testMapToAirportDto() {
         //Given
-        Airport airport = new Airport(1L, "Gdansk Airport", "GDN", "Gdansk", "Poland", "PL");
+        Airport airport = new Airport(1L, "Gdansk", "Poland", "PL", "GDN", "Gdansk");
         //When
         AirportDto result = airportMapper.mapToAirportDto(airport);
         //Then
@@ -51,7 +51,7 @@ public class AirportMapperTestSuite {
     @Test
     public void testMapToAirport() {
         //Given
-        AirportDto airportDto = new AirportDto(1L, "Gdansk Airport", "GDN", "Gdansk", "Poland", "PL");
+        AirportDto airportDto = new AirportDto(1L, "Gdansk", "Poland", "PL", "GDN", "Gdansk");
         //When
         Airport result = airportMapper.mapToAirport(airportDto);
         //Then
