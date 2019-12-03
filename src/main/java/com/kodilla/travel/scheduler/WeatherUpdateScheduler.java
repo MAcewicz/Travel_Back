@@ -1,7 +1,6 @@
 package com.kodilla.travel.scheduler;
 
 import com.kodilla.travel.domain.Airport;
-import com.kodilla.travel.domain.Weather;
 import com.kodilla.travel.dto.WeatherDto;
 import com.kodilla.travel.mappers.WeatherMapper;
 import com.kodilla.travel.service.AirportService;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Component
