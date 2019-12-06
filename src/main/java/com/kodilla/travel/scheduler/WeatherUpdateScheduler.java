@@ -13,6 +13,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.kodilla.travel.converter.Distinctor.distinctByKey;
 
 @Component
 public class WeatherUpdateScheduler {
@@ -31,17 +34,15 @@ public class WeatherUpdateScheduler {
     @Autowired
     private WeatherMapper weatherMapper;
 
-    @Scheduled(cron = "0 0 1 * * *")
-    public void deleteOldWeather() {
+    @Scheduled(cron = "0 0 2 * * *")
+    public void updateForecast() {
         LOGGER.info("Deleting old weather...");
         weatherService.clearData();
         LOGGER.info("Data cleared.");
-    }
-
-    @Scheduled(cron = "0 0 2 * * *")
-    public void updateForecats() {
         LOGGER.info("Updating weather forecast...");
-        List<Airport> airports = airportService.getAllAirports();
+        List<Airport> airports = airportService.getAllAirports().stream()
+                .filter(distinctByKey(Airport::getCity))
+                .collect(Collectors.toList());
         for (Airport airport : airports) {
             LOGGER.info(airport.getName() + " " + airport.getCity());
             List<WeatherDto> weatherDtos = weatherbitService.getForecasts(airport);

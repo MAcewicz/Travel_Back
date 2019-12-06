@@ -1,19 +1,17 @@
 package com.kodilla.travel.service;
 
 import com.kodilla.travel.domain.Weather;
-import com.kodilla.travel.exception.WeatherNotFoundException;
 import com.kodilla.travel.repository.WeatherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.kodilla.travel.converter.WeatherDistinct.distinctByKey;
+import static com.kodilla.travel.converter.Distinctor.distinctByKey;
 
 @Service
 public class WeatherService {

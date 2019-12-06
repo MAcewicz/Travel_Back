@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = "Weather.clearData",
-                query = "DELETE FROM weather WHERE date < CURRENT_DATE() "
+                query = "DELETE FROM weather"
         ),
         @NamedNativeQuery(
                 name = "Weather.getGoodConditions",
