@@ -34,7 +34,7 @@ public class WeatherUpdateScheduler {
     @Autowired
     private WeatherMapper weatherMapper;
 
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(cron = "0 0 2 * * *")
     public void updateForecast() {
         LOGGER.info("Deleting old weather...");
         weatherService.clearData();
