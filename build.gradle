@@ -22,12 +22,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation('org.springframework.boot:spring-boot-starter-jdbc')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('mysql:mysql-connector-java')
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    implementation('mysql:mysql-connector-java')
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'com.google.code.gson:gson:2.9.0'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
-    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.3'
-    compile 'com.amadeus:amadeus-java:6.1.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.3'
+    implementation 'com.amadeus:amadeus-java:6.1.0'
 }

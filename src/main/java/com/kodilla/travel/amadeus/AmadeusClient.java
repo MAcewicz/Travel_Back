@@ -3,7 +3,7 @@ package com.kodilla.travel.amadeus;
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.FlightOffer;
+import com.amadeus.resources.FlightOfferSearch;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.kodilla.travel.converter.TimeConverter;
@@ -43,7 +43,7 @@ public class AmadeusClient {
 
         String departureDate = date.toString();
 
-        FlightOffer[] flightOffers = amadeus.shopping.flightOffers.get(Params
+        FlightOfferSearch[] flightOffers = amadeus.shopping.flightOffersSearch.get(Params
                 .with("origin", origin)
                 .and("destination", destination)
                 .and("departureDate", departureDate)
