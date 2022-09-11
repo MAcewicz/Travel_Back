@@ -1,15 +1,10 @@
 package com.kodilla.travel.controller;
 
-import com.kodilla.travel.domain.Airline;
 import com.kodilla.travel.dto.AirlineDto;
-import com.kodilla.travel.exception.AirlineNotFoundException;
 import com.kodilla.travel.mappers.AirlineMapper;
 import com.kodilla.travel.service.AirlineService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/v1/travel/")

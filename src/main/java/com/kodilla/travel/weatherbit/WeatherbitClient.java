@@ -20,7 +20,7 @@ public class WeatherbitClient {
     private String key;
 
     private String getBaseUrl() {
-        return "http://api.weatherbit.io/v2.0//forecast/daily?";
+        return "https://api.weatherbit.io/v2.0//forecast/daily?";
     }
 
     public ForecastDto getForecast(Airport airport) {

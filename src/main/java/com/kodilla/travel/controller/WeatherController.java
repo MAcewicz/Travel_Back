@@ -1,8 +1,6 @@
 package com.kodilla.travel.controller;
 
-import com.kodilla.travel.domain.Airport;
 import com.kodilla.travel.dto.WeatherDto;
-import com.kodilla.travel.exception.AirportNotFoundException;
 import com.kodilla.travel.exception.WeatherNotFoundException;
 import com.kodilla.travel.mappers.WeatherMapper;
 import com.kodilla.travel.service.AirportService;

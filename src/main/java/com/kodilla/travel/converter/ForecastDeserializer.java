@@ -1,7 +1,6 @@
 package com.kodilla.travel.converter;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -18,7 +17,7 @@ public class ForecastDeserializer extends JsonDeserializer<ForecastDto> {
 
     @Override
     public ForecastDto deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+            throws IOException {
 
         JsonNode weatherNode = jp.getCodec().readTree(jp);
         String city = weatherNode.get("city_name").textValue();

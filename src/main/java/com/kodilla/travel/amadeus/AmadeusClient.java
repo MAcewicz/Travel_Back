@@ -14,6 +14,8 @@ import com.kodilla.travel.exception.AirlineNotFoundException;
 import com.kodilla.travel.exception.AirportNotFoundException;
 import com.kodilla.travel.service.AirlineService;
 import com.kodilla.travel.service.AirportService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +27,8 @@ import java.util.List;
 
 @Component
 public class AmadeusClient {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(AmadeusClient.class);
 
     @Autowired
     private TimeConverter timeConverter;
@@ -44,92 +48,71 @@ public class AmadeusClient {
         String departureDate = date.toString();
 
         FlightOfferSearch[] flightOffers = amadeus.shopping.flightOffersSearch.get(Params
-                .with("origin", origin)
-                .and("destination", destination)
+                .with("originLocationCode", origin)
+                .and("destinationLocationCode", destination)
                 .and("departureDate", departureDate)
+                .and("adults", "1")
                 .and("nonStop", "true")
                 .and("max", "10"));
 
-        JsonArray jsonElements = flightOffers[0].getResponse().getResult().getAsJsonArray("data");
         List<FlightDto> flightDtos = new ArrayList<>();
 
-        for (JsonElement jsonElement : jsonElements) {
-            FlightDto flightDto = new FlightDto();
+        if (flightOffers.length == 0) {
+            LOGGER.info("No flights found");
+        } else {
+            JsonArray jsonElements = flightOffers[0].getResponse().getResult().getAsJsonArray("data");
 
-            BigDecimal price = jsonElement
-                    .getAsJsonObject()
-                    .getAsJsonArray("offerItems")
-                    .get(0)
-                    .getAsJsonObject()
-                    .getAsJsonObject("price")
-                    .getAsJsonPrimitive("total")
-                    .getAsBigDecimal();
+            for (JsonElement jsonElement : jsonElements) {
+                FlightDto flightDto = new FlightDto();
 
-            String departure = jsonElement
-                    .getAsJsonObject()
-                    .getAsJsonArray("offerItems")
-                    .get(0)
-                    .getAsJsonObject()
-                    .getAsJsonArray("services")
-                    .get(0)
-                    .getAsJsonObject()
-                    .getAsJsonArray("segments")
-                    .get(0)
-                    .getAsJsonObject()
-                    .getAsJsonObject("flightSegment")
-                    .getAsJsonObject("departure")
-                    .getAsJsonPrimitive("at")
-                    .getAsString();
+                Long id = jsonElement.getAsJsonObject().get("id").getAsLong();
 
-            String arrival = jsonElement
-                    .getAsJsonObject()
-                    .getAsJsonArray("offerItems")
-                    .get(0)
-                    .getAsJsonObject()
-                    .getAsJsonArray("services")
-                    .get(0)
-                    .getAsJsonObject()
-                    .getAsJsonArray("segments")
-                    .get(0)
-                    .getAsJsonObject()
-                    .getAsJsonObject("flightSegment")
-                    .getAsJsonObject("arrival")
-                    .getAsJsonPrimitive("at")
-                    .getAsString();
+                BigDecimal price = jsonElement.getAsJsonObject()
+                        .get("price").getAsJsonObject()
+                        .get("grandTotal").getAsBigDecimal();
 
-            String airlineCode = jsonElement
-                    .getAsJsonObject()
-                    .getAsJsonArray("offerItems")
-                    .get(0)
-                    .getAsJsonObject()
-                    .getAsJsonArray("services")
-                    .get(0)
-                    .getAsJsonObject()
-                    .getAsJsonArray("segments")
-                    .get(0)
-                    .getAsJsonObject()
-                    .getAsJsonObject("flightSegment")
-                    .getAsJsonPrimitive("carrierCode")
-                    .getAsString();
+                String departure = jsonElement.getAsJsonObject()
+                        .get("itineraries").getAsJsonArray()
+                        .get(0).getAsJsonObject()
+                        .get("segments").getAsJsonArray()
+                        .get(0).getAsJsonObject()
+                        .get("departure").getAsJsonObject()
+                        .get("at").getAsString();
 
-            Timestamp arrivalTs = timeConverter.toTimestamp(arrival);
-            Timestamp departureTs = timeConverter.toTimestamp(departure);
+                String arrival = jsonElement.getAsJsonObject()
+                        .get("itineraries").getAsJsonArray()
+                        .get(0).getAsJsonObject()
+                        .get("segments").getAsJsonArray()
+                        .get(0).getAsJsonObject()
+                        .get("arrival").getAsJsonObject()
+                        .get("at").getAsString();
 
-            Airport originAirport = airportService.getAirportByIATA(origin).orElseThrow(AirportNotFoundException::new);
-            Airport destinationAirport = airportService.getAirportByIATA(destination).orElseThrow(AirportNotFoundException::new);
+                String airlineCode = jsonElement.getAsJsonObject()
+                        .get("itineraries").getAsJsonArray()
+                        .get(0).getAsJsonObject()
+                        .get("segments").getAsJsonArray()
+                        .get(0).getAsJsonObject()
+                        .get("carrierCode").getAsString();
 
-            Airline airline = airlineService.getAirlineByIata(airlineCode).orElseThrow(AirlineNotFoundException::new);
+                Timestamp arrivalTs = timeConverter.toTimestamp(arrival);
+                Timestamp departureTs = timeConverter.toTimestamp(departure);
 
-            flightDto.setAirport(originAirport.getName());
-            flightDto.setDestination(destinationAirport.getName());
-            flightDto.setPrice(price);
-            flightDto.setDeparture(departureTs);
-            flightDto.setArrival(arrivalTs);
-            flightDto.setAirline(airline.getName());
+                Airport originAirport = airportService.getAirportByIATA(origin).orElseThrow(AirportNotFoundException::new);
+                Airport destinationAirport = airportService.getAirportByIATA(destination).orElseThrow(AirportNotFoundException::new);
 
-            flightDtos.add(flightDto);
+                Airline airline = airlineService.getAirlineByIata(airlineCode).orElseThrow(AirlineNotFoundException::new);
+
+                flightDto.setId(id);
+                flightDto.setAirport(originAirport.getName());
+                flightDto.setDestination(destinationAirport.getName());
+                flightDto.setPrice(price);
+                flightDto.setDeparture(departureTs);
+                flightDto.setArrival(arrivalTs);
+                flightDto.setAirline(airline.getName());
+
+                flightDtos.add(flightDto);
+            }
         }
-
         return flightDtos;
     }
 }

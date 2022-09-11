@@ -34,7 +34,7 @@ public class WeatherUpdateScheduler {
     @Autowired
     private WeatherMapper weatherMapper;
 
-    @Scheduled(cron = "0 0 2 * * *")
+    @Scheduled(cron = "* * 1 * * *")
     public void updateForecast() {
         LOGGER.info("Deleting old weather...");
         weatherService.clearData();
@@ -44,7 +44,7 @@ public class WeatherUpdateScheduler {
                 .filter(distinctByKey(Airport::getCity))
                 .collect(Collectors.toList());
         for (Airport airport : airports) {
-            LOGGER.info(airport.getName() + " " + airport.getCity());
+            LOGGER.info(airport.getName() + " - " + airport.getCity());
             List<WeatherDto> weatherDtos = weatherbitService.getForecasts(airport);
             for (WeatherDto weatherDto : weatherDtos) {
                 weatherService.saveWeather(weatherMapper.mapToWeather(weatherDto));
