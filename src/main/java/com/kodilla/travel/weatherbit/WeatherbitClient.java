@@ -13,11 +13,15 @@ import java.net.URI;
 @Component
 public class WeatherbitClient {
 
-    @Autowired
-    private RestTemplate restTemplate;
-
     @Value("${weatherbit.key}")
     private String key;
+
+    private final RestTemplate restTemplate;
+
+    @Autowired
+    public WeatherbitClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     private String getBaseUrl() {
         return "https://api.weatherbit.io/v2.0//forecast/daily?";

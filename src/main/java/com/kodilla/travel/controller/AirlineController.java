@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class AirlineController {
 
-    @Autowired
-    private AirlineService airlineService;
+    private final AirlineService airlineService;
+    private final AirlineMapper airlineMapper;
 
     @Autowired
-    private AirlineMapper airlineMapper;
+    public AirlineController(AirlineService airlineService, AirlineMapper airlineMapper) {
+        this.airlineService = airlineService;
+        this.airlineMapper = airlineMapper;
+    }
 
     @PutMapping(value = "airline")
     public AirlineDto updateAirline(@RequestBody AirlineDto airlineDto) {

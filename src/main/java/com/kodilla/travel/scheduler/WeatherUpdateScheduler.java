@@ -22,17 +22,18 @@ public class WeatherUpdateScheduler {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(WeatherUpdateScheduler.class);
 
-    @Autowired
-    private AirportService airportService;
+    private final AirportService airportService;
+    private final WeatherService weatherService;
+    private final WeatherbitService weatherbitService;
+    private final WeatherMapper weatherMapper;
 
     @Autowired
-    private WeatherService weatherService;
-
-    @Autowired
-    private WeatherbitService weatherbitService;
-
-    @Autowired
-    private WeatherMapper weatherMapper;
+    public WeatherUpdateScheduler(AirportService airportService, WeatherService weatherService, WeatherbitService weatherbitService, WeatherMapper weatherMapper) {
+        this.airportService = airportService;
+        this.weatherService = weatherService;
+        this.weatherbitService = weatherbitService;
+        this.weatherMapper = weatherMapper;
+    }
 
     @Scheduled(cron = "* * 1 * * *")
     public void updateForecast() {

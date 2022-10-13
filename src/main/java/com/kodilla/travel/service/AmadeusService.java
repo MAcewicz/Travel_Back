@@ -14,11 +14,12 @@ import java.util.List;
 @Service
 public class AmadeusService {
 
-    @Autowired
-    private AmadeusClient amadeusClient;
+    private final AmadeusClient amadeusClient;
 
     @Autowired
-    private AirportService airportService;
+    public AmadeusService(AmadeusClient amadeusClient) {
+        this.amadeusClient = amadeusClient;
+    }
 
     public List<FlightDto> getCheapFlights(String origin, String destination, String departure) throws AirlineNotFoundException, AirportNotFoundException, ResponseException {
 

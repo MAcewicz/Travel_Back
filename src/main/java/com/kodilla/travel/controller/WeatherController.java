@@ -16,14 +16,14 @@ import java.util.List;
 @CrossOrigin("*")
 public class WeatherController {
 
-    @Autowired
-    WeatherService weatherService;
+    private final WeatherService weatherService;
+    private final WeatherMapper weatherMapper;
 
     @Autowired
-    AirportService airportService;
-
-    @Autowired
-    WeatherMapper weatherMapper;
+    public WeatherController(WeatherService weatherService, WeatherMapper weatherMapper) {
+        this.weatherService = weatherService;
+        this.weatherMapper = weatherMapper;
+    }
 
     @GetMapping(value = "weather")
     public List<WeatherDto> getWeatherList() {

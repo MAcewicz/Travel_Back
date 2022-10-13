@@ -10,8 +10,12 @@ import java.util.Optional;
 @Service
 public class AirlineService {
 
+    private final AirlineRepository airlineRepository;
+
     @Autowired
-    private AirlineRepository airlineRepository;
+    public AirlineService(AirlineRepository airlineRepository) {
+        this.airlineRepository = airlineRepository;
+    }
 
     public Optional<Airline> getAirlineByIata(String iata) {
         return airlineRepository.findByIataCode(iata);

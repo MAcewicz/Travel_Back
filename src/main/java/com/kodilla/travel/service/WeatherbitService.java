@@ -11,8 +11,12 @@ import java.util.List;
 @Service
 public class WeatherbitService {
 
+    private final WeatherbitClient weatherbitClient;
+
     @Autowired
-    private WeatherbitClient weatherbitClient;
+    public WeatherbitService(WeatherbitClient weatherbitClient) {
+        this.weatherbitClient = weatherbitClient;
+    }
 
     public List<WeatherDto> getForecasts(Airport airport) {
         return weatherbitClient.getForecast(airport).getWeatherDtos();

@@ -16,8 +16,12 @@ import static com.kodilla.travel.converter.Distinctor.distinctByKey;
 @Service
 public class WeatherService {
 
+    private final WeatherRepository weatherRepository;
+
     @Autowired
-    private WeatherRepository weatherRepository;
+    public WeatherService(WeatherRepository weatherRepository) {
+        this.weatherRepository = weatherRepository;
+    }
 
     public List<Weather> getWeatherList() {
         return weatherRepository.findAll();

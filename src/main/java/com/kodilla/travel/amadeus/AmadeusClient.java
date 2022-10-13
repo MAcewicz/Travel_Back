@@ -30,18 +30,20 @@ public class AmadeusClient {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(AmadeusClient.class);
 
-    @Autowired
-    private TimeConverter timeConverter;
+    private final TimeConverter timeConverter;
+    private final AirportService airportService;
+    private final AirlineService airlineService;
 
-    @Autowired
-    private AirportService airportService;
-
-    @Autowired
-    private AirlineService airlineService;
-
-    private Amadeus amadeus = Amadeus
+    private final Amadeus amadeus = Amadeus
             .builder(System.getenv())
             .build();
+
+    @Autowired
+    public AmadeusClient(TimeConverter timeConverter, AirportService airportService, AirlineService airlineService) {
+        this.timeConverter = timeConverter;
+        this.airportService = airportService;
+        this.airlineService = airlineService;
+    }
 
     public List<FlightDto> getLowFare(String origin, String destination, LocalDate date) throws ResponseException, AirportNotFoundException, AirlineNotFoundException {
 

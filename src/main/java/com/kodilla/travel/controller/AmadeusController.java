@@ -18,8 +18,13 @@ import java.util.List;
 @RequestMapping("/v1/travel/")
 public class AmadeusController {
 
+
+    private final AmadeusService amadeusService;
+
     @Autowired
-    private AmadeusService amadeusService;
+    public AmadeusController(AmadeusService amadeusService) {
+        this.amadeusService = amadeusService;
+    }
 
     @GetMapping("flights/{origin}/{destination}/{date}")
     public List<FlightDto> getFlights(@PathVariable String origin, @PathVariable String destination, @PathVariable String date) {

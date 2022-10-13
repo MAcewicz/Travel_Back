@@ -14,11 +14,14 @@ import java.util.List;
 @CrossOrigin("*")
 public class AirportController {
 
-    @Autowired
-    private AirportService airportService;
+    private final AirportService airportService;
+    private final AirportMapper airportMapper;
 
     @Autowired
-    private AirportMapper airportMapper;
+    public AirportController(AirportService airportService, AirportMapper airportMapper) {
+        this.airportService = airportService;
+        this.airportMapper = airportMapper;
+    }
 
     @GetMapping(value = "airport")
     public List<AirportDto> getAirports() {
