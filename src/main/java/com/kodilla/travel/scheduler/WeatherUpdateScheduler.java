@@ -5,7 +5,7 @@ import com.kodilla.travel.dto.WeatherDto;
 import com.kodilla.travel.mappers.WeatherMapper;
 import com.kodilla.travel.service.AirportService;
 import com.kodilla.travel.service.WeatherService;
-import com.kodilla.travel.service.WeatherbitService;
+import com.kodilla.travel.service.WeatherApiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +24,14 @@ public class WeatherUpdateScheduler {
 
     private final AirportService airportService;
     private final WeatherService weatherService;
-    private final WeatherbitService weatherbitService;
+    private final WeatherApiService weatherApiService;
     private final WeatherMapper weatherMapper;
 
     @Autowired
-    public WeatherUpdateScheduler(AirportService airportService, WeatherService weatherService, WeatherbitService weatherbitService, WeatherMapper weatherMapper) {
+    public WeatherUpdateScheduler(AirportService airportService, WeatherService weatherService, WeatherApiService weatherApiService, WeatherMapper weatherMapper) {
         this.airportService = airportService;
         this.weatherService = weatherService;
-        this.weatherbitService = weatherbitService;
+        this.weatherApiService = weatherApiService;
         this.weatherMapper = weatherMapper;
     }
 
@@ -46,7 +46,7 @@ public class WeatherUpdateScheduler {
                 .collect(Collectors.toList());
         for (Airport airport : airports) {
             LOGGER.info(airport.getName() + " - " + airport.getCity());
-            List<WeatherDto> weatherDtos = weatherbitService.getForecasts(airport);
+            List<WeatherDto> weatherDtos = weatherApiService.getForecasts(airport);
             for (WeatherDto weatherDto : weatherDtos) {
                 weatherService.saveWeather(weatherMapper.mapToWeather(weatherDto));
             }

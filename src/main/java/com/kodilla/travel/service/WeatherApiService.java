@@ -2,23 +2,23 @@ package com.kodilla.travel.service;
 
 import com.kodilla.travel.domain.Airport;
 import com.kodilla.travel.dto.WeatherDto;
-import com.kodilla.travel.weatherbit.WeatherbitClient;
+import com.kodilla.travel.weather.WeatherClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class WeatherbitService {
+public class WeatherApiService {
 
-    private final WeatherbitClient weatherbitClient;
+    private final WeatherClient weatherClient;
 
     @Autowired
-    public WeatherbitService(WeatherbitClient weatherbitClient) {
-        this.weatherbitClient = weatherbitClient;
+    public WeatherApiService(WeatherClient weatherClient) {
+        this.weatherClient = weatherClient;
     }
 
     public List<WeatherDto> getForecasts(Airport airport) {
-        return weatherbitClient.getForecast(airport).getWeatherDtos();
+        return weatherClient.getForecast(airport).getWeatherDtos();
     }
 }

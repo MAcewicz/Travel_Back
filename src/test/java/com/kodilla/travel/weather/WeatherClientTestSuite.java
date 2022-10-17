@@ -1,4 +1,4 @@
-package com.kodilla.travel.weatherbit;
+package com.kodilla.travel.weather;
 
 import com.kodilla.travel.dto.ForecastDto;
 import com.kodilla.travel.exception.AirportNotFoundException;
@@ -13,10 +13,10 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class WeatherBitTestSuite {
+public class WeatherClientTestSuite {
 
     @Autowired
-    private WeatherbitClient weatherbitClient;
+    private WeatherClient weatherClient;
 
     @Autowired
     private AirportService airportService;
@@ -25,9 +25,9 @@ public class WeatherBitTestSuite {
     public void testGetLongForecast() throws AirportNotFoundException {
         //Given
         //When
-        ForecastDto forecastDto = weatherbitClient.getForecast(airportService.getAirportByIATA("PRG")
+        ForecastDto forecastDto = weatherClient.getForecast(airportService.getAirportByIATA("PRG")
                 .orElseThrow(AirportNotFoundException::new));
         //Then
-        assertEquals(forecastDto.getWeatherDtos().size(), 16);
+        assertEquals(forecastDto.getWeatherDtos().size(), 15);
     }
 }
