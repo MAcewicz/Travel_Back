@@ -25,8 +25,7 @@ public class WeatherClientTestSuite {
     public void testGetLongForecast() throws AirportNotFoundException {
         //Given
         //When
-        ForecastDto forecastDto = weatherClient.getForecast(airportService.getAirportByIATA("PRG")
-                .orElseThrow(AirportNotFoundException::new));
+        ForecastDto forecastDto = weatherClient.getForecast(airportService.getAirportByIATA("PRG"));
         //Then
         assertEquals(forecastDto.getWeatherDtos().size(), 15);
     }

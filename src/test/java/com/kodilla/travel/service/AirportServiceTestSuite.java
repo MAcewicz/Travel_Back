@@ -79,7 +79,7 @@ public class AirportServiceTestSuite {
 
         when(airportRepository.findById(1L)).thenReturn(Optional.of(airport));
         //When
-        Optional<Airport> result = airportService.getAirportById(1L);
+        Airport result = airportService.getAirportById(1L);
         //Then
         assertNotNull(result);
     }
@@ -91,7 +91,7 @@ public class AirportServiceTestSuite {
 
         when(airportRepository.findByIata("GDN")).thenReturn(Optional.of(airport));
         //When
-        Optional<Airport> result = airportService.getAirportByIATA("GDN");
+        Airport result = airportService.getAirportByIATA("GDN");
         //Then
         assertNotNull(result);
     }

@@ -1,11 +1,13 @@
 package com.kodilla.travel.service;
 
 import com.kodilla.travel.domain.Airport;
+import com.kodilla.travel.exception.AirportNotFoundException;
 import com.kodilla.travel.repository.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -30,16 +32,22 @@ public class AirportService {
         return airportRepository.findByCity(city);
     }
 
-    public Optional<Airport> getAirportById(Long id) {
-        return airportRepository.findById(id);
+    public Airport getAirportById(Long id) {
+        try {
+            return airportRepository.findById(id).get();
+        } catch (NoSuchElementException e) {
+            throw new AirportNotFoundException();
+        }
+
     }
 
-    public Optional<Airport> getAirportByName(String name) {
-        return airportRepository.findByName(name);
-    }
+    public Airport getAirportByIATA(String iata) {
+        try {
+            return airportRepository.findByIata(iata).get();
+        } catch (NoSuchElementException e) {
+            throw new AirportNotFoundException();
+        }
 
-    public Optional<Airport> getAirportByIATA(String iata) {
-        return airportRepository.findByIata(iata);
     }
 
     public Airport saveAirport(Airport airport) {

@@ -1,8 +1,8 @@
 package com.kodilla.travel.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+public class AirlineNotFoundException extends RuntimeException {
 
-@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Airline Not Found!")
-public class AirlineNotFoundException extends Exception {
+    public AirlineNotFoundException() {
+        super("No airline found.");
+    }
 }

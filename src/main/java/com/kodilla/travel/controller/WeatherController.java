@@ -32,7 +32,7 @@ public class WeatherController {
 
     @GetMapping(value = "weather/id/{id}")
     public WeatherDto getWeatherById(@PathVariable Long id) throws WeatherNotFoundException {
-        return weatherMapper.mapToWeatherDto(weatherService.getWeatherById(id).orElseThrow(WeatherNotFoundException::new));
+        return weatherMapper.mapToWeatherDto(weatherService.getWeatherById(id));
     }
 
     @GetMapping(value = "weather/city/{city}")
@@ -42,7 +42,7 @@ public class WeatherController {
 
     @GetMapping(value = "weather/citydate/{city}/{date}")
     public WeatherDto getWeatherByCityAndDate(@PathVariable String city, @PathVariable LocalDate date) throws WeatherNotFoundException {
-        return weatherMapper.mapToWeatherDto(weatherService.getWeatherByCityAndDate(city, date).orElseThrow(WeatherNotFoundException::new));
+        return weatherMapper.mapToWeatherDto(weatherService.getWeatherByCityAndDate(city, date));
     }
 
     @GetMapping(value = "weather/cond/{temp}/{cloudiness}/{rainfall}")

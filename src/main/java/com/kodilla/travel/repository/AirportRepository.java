@@ -20,8 +20,6 @@ public interface AirportRepository extends CrudRepository<Airport, Long> {
 
     Optional<Airport> findByIata(String iata);
 
-    Optional<Airport> findByName(String name);
-
     Airport save(Airport airport);
 
     @Override

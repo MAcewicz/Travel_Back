@@ -66,7 +66,7 @@ public class WeatherServiceTestSuite {
 
         when(weatherRepository.findById(3L)).thenReturn(java.util.Optional.of(weather));
         //When
-        Optional<Weather> result = weatherService.getWeatherById(3L);
+        Weather result = weatherService.getWeatherById(3L);
         //Then
         assertNotNull(result);
     }
@@ -79,7 +79,7 @@ public class WeatherServiceTestSuite {
 
         when(weatherRepository.findByCityAndDate("Warsaw", date)).thenReturn(Optional.of(weather));
         //When
-        Optional<Weather> result = weatherService.getWeatherByCityAndDate("Warsaw", date);
+        Weather result = weatherService.getWeatherByCityAndDate("Warsaw", date);
         //Then
         assertNotNull(result);
     }

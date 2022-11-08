@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.kodilla.travel.converter.Distinctor.distinctByKey;
+import static com.kodilla.travel.converter.Distincter.distinctByKey;
 
 @Component
 public class WeatherUpdateScheduler {

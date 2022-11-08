@@ -23,7 +23,7 @@ public class AirportController {
         this.airportMapper = airportMapper;
     }
 
-    @GetMapping(value = "airport")
+    @GetMapping(value = "airports")
     public List<AirportDto> getAirports() {
         return airportMapper.mapToAirportDtoList(airportService.getAllAirports());
     }
@@ -40,12 +40,12 @@ public class AirportController {
 
     @GetMapping(value = "airport/{id}")
     public AirportDto getAirportById(@PathVariable Long id) throws AirportNotFoundException {
-        return airportMapper.mapToAirportDto(airportService.getAirportById(id).orElseThrow(AirportNotFoundException::new));
+        return airportMapper.mapToAirportDto(airportService.getAirportById(id));
     }
 
     @GetMapping(value = "airport/iata/{iata}")
     public AirportDto getAirportByIata(@PathVariable String iata) throws AirportNotFoundException {
-        return airportMapper.mapToAirportDto(airportService.getAirportByIATA(iata).orElseThrow(AirportNotFoundException::new));
+        return airportMapper.mapToAirportDto(airportService.getAirportByIATA(iata));
     }
 
     @PutMapping(value = "airport")

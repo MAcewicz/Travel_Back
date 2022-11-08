@@ -1,8 +1,8 @@
 package com.kodilla.travel.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+public class WeatherNotFoundException extends RuntimeException {
 
-@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Weather Not Found!")
-public class WeatherNotFoundException extends Exception {
+    public WeatherNotFoundException() {
+        super("Weather for given location or date not found.");
+    }
 }

@@ -1,6 +1,7 @@
 package com.kodilla.travel.service;
 
 import com.kodilla.travel.domain.Weather;
+import com.kodilla.travel.exception.WeatherNotFoundException;
 import com.kodilla.travel.repository.WeatherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,10 +9,11 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.kodilla.travel.converter.Distinctor.distinctByKey;
+import static com.kodilla.travel.converter.Distincter.distinctByKey;
 
 @Service
 public class WeatherService {
@@ -31,12 +33,21 @@ public class WeatherService {
         return weatherRepository.findByCity(city);
     }
 
-    public Optional<Weather> getWeatherById(long id) {
-        return weatherRepository.findById(id);
+    public Weather getWeatherById(long id) {
+        try {
+            return weatherRepository.findById(id).get();
+        } catch (NoSuchElementException e) {
+            throw  new WeatherNotFoundException();
+        }
     }
 
-    public Optional<Weather> getWeatherByCityAndDate(String city, LocalDate date) {
-        return weatherRepository.findByCityAndDate(city, date);
+    public Weather getWeatherByCityAndDate(String city, LocalDate date) {
+        try {
+            return weatherRepository.findByCityAndDate(city, date).get();
+        } catch (NoSuchElementException e) {
+            throw new WeatherNotFoundException();
+        }
+
     }
 
     public List<Weather> getWeatherByConditions(int temp, int cloud, int rainfall) {

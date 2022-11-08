@@ -99,10 +99,10 @@ public class AmadeusClient {
                 Timestamp arrivalTs = timeConverter.toTimestamp(arrival);
                 Timestamp departureTs = timeConverter.toTimestamp(departure);
 
-                Airport originAirport = airportService.getAirportByIATA(origin).orElseThrow(AirportNotFoundException::new);
-                Airport destinationAirport = airportService.getAirportByIATA(destination).orElseThrow(AirportNotFoundException::new);
+                Airport originAirport = airportService.getAirportByIATA(origin);
+                Airport destinationAirport = airportService.getAirportByIATA(destination);
 
-                Airline airline = airlineService.getAirlineByIata(airlineCode).orElseThrow(AirlineNotFoundException::new);
+                Airline airline = airlineService.getAirlineByIata(airlineCode);
 
                 flightDto.setId(id);
                 flightDto.setAirport(originAirport.getName());
